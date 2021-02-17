@@ -58,13 +58,6 @@ $router->map(
 
 $router->map(
     'GET',
-    '/main/login',
-    'LoginController::login',
-    'main-login'
-);
-
-$router->map(
-    'GET',
     '/teams',
     'CategoryController::list',
     'team-list'
