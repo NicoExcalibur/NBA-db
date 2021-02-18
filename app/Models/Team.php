@@ -3,11 +3,40 @@
 class Article {
     private $id;
     private $name;
-    private $logo;
-    private $champ_nbr;
-    private $victories;
-    private $defeats;
-    private $conference;
+    // private $logo;
+    // private $champ_nbr;
+    // private $victories;
+    // private $defeats;
+    // private $conference;
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the value of title
+     */ 
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
 
     public function findAllForHomepage()
     {
