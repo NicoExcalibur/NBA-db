@@ -21,6 +21,17 @@ $router->map(
     'homepage'
 );
 
+// $router->map(
+//     'GET',
+//     '/player',
+//     [
+//         'method' => 'home',
+//         'controller' => 'MainController'
+//     ],
+//     'player-list'
+// );
+
+
 // comparer cette route aux routes qui correspondent aux pages existantes
 $match = $router->match();
 

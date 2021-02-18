@@ -9,9 +9,13 @@ class MainController {
         $teamModel = new Team();
         $teamList = $teamModel->findAllForHomepage(); // on récupère un array d'objets Team
 
+        $playerModel = new Player();
+        $playerList = $playerModel->findAllPlayers();
+
         // afficher la vue (dernière ligne droite !
         $this->show('home', [
-            'teamList' => $teamList
+            'teamList'   => $teamList,
+            'playerList' => $playerList 
         ]);
     }
 
