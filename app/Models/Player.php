@@ -191,8 +191,8 @@ class Player {
         $pdoStatement = $pdo->query($sql);
 
         // récupérer les résultats et les renvoyer
-        $teams = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+        $players = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
 
-        return $teams;
+        return $players;
     }
 }

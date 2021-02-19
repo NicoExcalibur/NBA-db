@@ -17,12 +17,16 @@
         <?php foreach ($viewData['teamList'] as $team) : ?>
         <tr>
             <td><?= $team->getId(); ?></td>
-            <td><?= $team->getName(); ?></td>
+            <td><a href="#"><?= $team->getName(); ?></a></td>
             <td><img src="<?= $team->getLogo(); ?>" alt="Logo de <?= $team->getName(); ?>"></td>
             <td><?= $team->getChampNbr(); ?></td>
             <td><?= $team->getVictories(); ?></td>
             <td><?= $team->getDefeats(); ?></td>
-            <td><?= $team->getConference(); ?></td>
+            <td><?php if ($team->getConference() == 1) {
+                echo 'Ouest';
+            } else {
+                echo 'Est';
+            }; ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -45,9 +49,10 @@
             <td>Contres (moy)</td>
             <td>Equipe</td>
         </tr>
+        <?php dump($viewData); die; ?>
         <?php foreach ($viewData['playerList'] as $player) : ?>
         <tr>
-            <td><img src="<?= $player->getLogo(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
+            <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
             <td><?= $player->getName(); ?></td>
             <td><?= $player->getPosition(); ?></td>
             <td><?= $player->getPointsAvg(); ?></td>

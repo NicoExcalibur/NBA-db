@@ -1,5 +1,9 @@
 <?php
 
+// namespace app\Controllers;
+
+// use app\Models\Player;
+
 class MainController {
 
     //afficher la home
@@ -11,6 +15,8 @@ class MainController {
 
         $playerModel = new Player();
         $playerList = $playerModel->findAllPlayers();
+
+        // dump($playerList); die;
 
         // afficher la vue (dernière ligne droite !
         $this->show('home', [

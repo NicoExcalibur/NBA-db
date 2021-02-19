@@ -5,10 +5,11 @@ require __DIR__ . '/../vendor/autoload.php';
 
 require __DIR__ . '/../app/Controllers/MainController.php';
 require __DIR__ . '/../app/Models/Team.php';
+require __DIR__ . '/../app/Models/Player.php';
 
 // récupérer la route qui a été demandée par l'utilisateur
 $router = new AltoRouter;
-$router->setBasePath('/htdocs/NBAdb');
+$router->setBasePath('/NBAdb/public');
 
 // déclarer les routes
 $router->map(
