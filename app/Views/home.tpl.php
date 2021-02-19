@@ -1,3 +1,4 @@
+<?php dump($viewData); ?>
 <table>
     <thead>
         <tr>
@@ -49,7 +50,7 @@
             <td>Contres (moy)</td>
             <td>Equipe</td>
         </tr>
-        <?php dump($viewData); die; ?>
+        
         <?php foreach ($viewData['playerList'] as $player) : ?>
         <tr>
             <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
