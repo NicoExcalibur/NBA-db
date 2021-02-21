@@ -1,6 +1,5 @@
-<?php dump($viewData); ?>
+<?php dump($router); ?>
 
-<a href="<?php $router->generate('player-list');  ?>">Joueurs</a>
 <table>
     <thead>
         <tr>
