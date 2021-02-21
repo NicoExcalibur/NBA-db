@@ -3,7 +3,11 @@
 // inclure les dépendances composer
 require __DIR__ . '/../vendor/autoload.php';
 
+// Mes controllers
 require __DIR__ . '/../app/Controllers/MainController.php';
+require __DIR__ . '/../app/Controllers/PlayerController.php';
+
+// Mes classes
 require __DIR__ . '/../app/Models/Team.php';
 require __DIR__ . '/../app/Models/Player.php';
 
@@ -22,15 +26,15 @@ $router->map(
     'homepage'
 );
 
-// $router->map(
-//     'GET',
-//     '/player',
-//     [
-//         'method' => 'home',
-//         'controller' => 'MainController'
-//     ],
-//     'player-list'
-// );
+$router->map(
+    'GET',
+    '/players',
+    [
+        'method' => 'playerListPage',
+        'controller' => 'PlayerController'
+    ],
+    'player-list'
+);
 
 
 // comparer cette route aux routes qui correspondent aux pages existantes

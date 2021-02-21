@@ -10,18 +10,16 @@ class MainController {
     public function home() {
 
         //récup les équipes en page d'accueil
-        $teamModel = new Team();
-        $teamList = $teamModel->findAllForHomepage(); // on récupère un array d'objets Team
+        $eastTeamModel = new Team();
+        $eastTeamList = $eastTeamModel->findAllEast(); // on récupère un array d'objets Team
 
-        $playerModel = new Player();
-        $playerList = $playerModel->findAllPlayers();
-
-        // dump($playerList); die;
+        $westTeamModel = new Team();
+        $westTeamList = $westTeamModel->findAllWest(); // on récupère un array d'objets Team
 
         // afficher la vue (dernière ligne droite !
         $this->show('home', [
-            'teamList'   => $teamList,
-            'playerList' => $playerList 
+            'eastTeamList'   => $eastTeamList,
+            'westTeamList'   => $westTeamList
         ]);
     }
 

@@ -156,4 +156,36 @@ class Team {
 
         return $teams;
     }
+
+    public function findAllEast()
+    {
+        // connecter la BDD
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+
+        // exécuter la requête
+        $sql = "SELECT * FROM `team` WHERE `conference` = 0";
+        // query() pour une sélection
+        $pdoStatement = $pdo->query($sql);
+
+        // récupérer les résultats et les renvoyer
+        $Easternteams = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
+
+        return $Easternteams;
+    }
+
+    public function findAllWest()
+    {
+        // connecter la BDD
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+
+        // exécuter la requête
+        $sql = "SELECT * FROM `team` WHERE `conference` = 1";
+        // query() pour une sélection
+        $pdoStatement = $pdo->query($sql);
+
+        // récupérer les résultats et les renvoyer
+        $Westernteams = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
+
+        return $Westernteams;
+    }
 }
