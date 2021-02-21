@@ -11,9 +11,18 @@ class PlayerController {
         // dump($playerList); die;
 
         // afficher la vue (dernière ligne droite !
-        $this->show('player-list', [
+        $this->show('players', [
             'playerList' => $playerList 
         ]);
+    }
+
+     //affiche la vue
+     private function show($viewName, $viewData = []) {
+
+        require __DIR__ . '/../Views/header.tpl.php';
+        require __DIR__ . "/../Views/{$viewName}.tpl.php";
+        require __DIR__ . '/../Views/footer.tpl.php';
+
     }
 
 }
