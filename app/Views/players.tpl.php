@@ -1,4 +1,4 @@
-<?php dump($viewData);?> 
+<?php dump($router);?> 
 <table>
     <thead>
         <tr>
@@ -20,7 +20,7 @@
         <?php foreach ($viewData['playerList'] as $player) : ?>
         <tr>
             <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
-            <td><?= $player->getName(); ?></td>
+            <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
             <td><?= $player->getPosition(); ?></td>
             <td><?= $player->getPointsAvg(); ?></td>
             <td><?= $player->getAssistsAvg(); ?></td>

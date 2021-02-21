@@ -36,6 +36,16 @@ $router->map(
     'player-list'
 );
 
+$router->map(
+    'GET',
+    '/players/[i:id]',
+    [
+        'method' => 'player',
+        'controller' => 'PlayerController'
+    ],
+    'single-player'
+);
+
 
 // comparer cette route aux routes qui correspondent aux pages existantes
 $match = $router->match();
@@ -48,6 +58,9 @@ if ($match === false) {
 // Récupérer le nom de la méthode et le nom de la classe de controller à utiliser
 $methodName = $match['target']['method'];
 $controllerName = $match['target']['controller'];
+$arguments = $match['params'];
+
+// dump($match); die;
 
 $controller = new $controllerName();
-$controller->$methodName();
+$controller->$methodName($arguments);
