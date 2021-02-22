@@ -1,6 +1,6 @@
 <?php 
 
-class TeamController {
+class TeamController extends CoreController {
 
     public function team($id) {
         // dd('Je vais aller chercher en base de donnée le produit dont l id est: '. $id['id']);
@@ -24,19 +24,4 @@ class TeamController {
             'playerList' => $playerList
         ]);
     }
-
-    //affiche la vue
-    private function show($viewName, $viewData = []) {
-
-        global $router;
-
-        // définir l'url absolue pour nos assets
-        $viewData['assetsBaseUri'] = $_SERVER['BASE_URI'] . '/assets/';
-
-        require __DIR__ . '/../Views/header.tpl.php';
-        require __DIR__ . "/../Views/{$viewName}.tpl.php";
-        require __DIR__ . '/../Views/footer.tpl.php';
-
-    }
-
 }

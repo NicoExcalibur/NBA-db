@@ -1,7 +1,11 @@
-<?php dump($viewData); ?>
+<div class="team-header">
+    <div>
+        <img src="<?= $viewData['myTeam']->getLogo(); ?>" alt="">
+    </div>
+    <h1><?= $viewData['myTeam']->getName(); ?></h1>
+</div>
 
-<h1><?= $viewData['myTeam']->getName(); ?></h1>
-
+<p></p>
 <div class="players">
     <?php foreach ($viewData['playerList'] as $player) : ?>
     <div class="player-card">

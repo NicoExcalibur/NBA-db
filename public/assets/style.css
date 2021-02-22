@@ -47,3 +47,30 @@ img {
 .player-card p {
     text-align: center;
 }
+
+nav {
+    display:flex;
+    justify-content: space-between;
+}
+
+.logo {
+    margin-left: 2em;
+}
+
+.navbar-list {
+    display: flex;
+    margin-right: 2em;
+}
+
+.navbar-list li{
+    list-style: none;
+    margin-right: 1em;
+}
+
+.team-header {
+    display: flex;
+}
+
+.team-header img {
+    height: 75px;
+}

@@ -8,5 +8,5 @@
     <title>NBA DataBase</title>
 </head>
     
-<h1>NBA DB</h1>
+<?php require __DIR__ . '../nav.tpl.php'; ?>
 <hr>

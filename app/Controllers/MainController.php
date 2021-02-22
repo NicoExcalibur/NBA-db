@@ -1,10 +1,6 @@
 <?php
 
-// namespace app\Controllers;
-
-// use app\Models\Player;
-
-class MainController {
+class MainController extends CoreController{
 
     //afficher la home
     public function home() {
@@ -22,19 +18,4 @@ class MainController {
             'westTeamList'   => $westTeamList
         ]);
     }
-
-    //affiche la vue
-    private function show($viewName, $viewData = []) {
-
-        global $router;
-
-       // définir l'url absolue pour nos assets
-       $viewData['assetsBaseUri'] = $_SERVER['BASE_URI'] . '/assets/';
-
-        require __DIR__ . '/../Views/header.tpl.php';
-        require __DIR__ . "/../Views/{$viewName}.tpl.php";
-        require __DIR__ . '/../Views/footer.tpl.php';
-
-    }
-
 }

@@ -15,7 +15,6 @@
                 <td>Passes décisives (moy)</td>
                 <td>Rebonds (moy)</td>
                 <td>Contres (moy)</td>
-                <td>Equipe</td>
             </tr>
     
             <tr>
@@ -24,7 +23,6 @@
                 <td><?= $viewData['myPlayer']->getAssistsAvg(); ?></td>
                 <td><?= $viewData['myPlayer']->getReboundsAvg(); ?></td>
                 <td><?= $viewData['myPlayer']->getBlocksAvg(); ?></td>
-                <td><?= $viewData['myPlayer']->getTeamId(); ?></td>
             </tr>
         </tbody>
     </table>

@@ -4,6 +4,7 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 // Mes controllers
+require __DIR__ . '/../app/Controllers/CoreController.php';
 require __DIR__ . '/../app/Controllers/MainController.php';
 require __DIR__ . '/../app/Controllers/PlayerController.php';
 require __DIR__ . '/../app/Controllers/TeamController.php';
