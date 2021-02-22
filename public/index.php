@@ -58,6 +58,15 @@ $router->map(
     'single-team'
 );
 
+$router->map(
+    'GET',
+    '/ranks',
+    [
+        'method' => 'rankings',
+        'controller' => 'TeamController'   
+    ],
+    'ranking'
+);
 
 // comparer cette route aux routes qui correspondent aux pages existantes
 $match = $router->match();

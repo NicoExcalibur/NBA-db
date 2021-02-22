@@ -10,7 +10,7 @@
                 <a href="<?= $router->generate('player-list'); ?>" class="nav-link">Joueurs</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">Classements</a>
+                <a href="<?= $router->generate('ranking'); ?>" class="nav-link">Classements</a>
             </li>
         </ul>
     </div>

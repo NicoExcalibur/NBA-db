@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
 table,
@@ -55,6 +56,13 @@ nav {
 
 .logo {
     margin-left: 2em;
+}
+
+nav,
+nav a {
+    background-color: #01579B;
+    color: white;
+
 }
 
 .navbar-list {

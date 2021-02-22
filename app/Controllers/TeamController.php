@@ -24,4 +24,17 @@ class TeamController extends CoreController {
             'playerList' => $playerList
         ]);
     }
+
+    public function rankings() {
+
+        $emptyTeam = new Team();
+        $myEastRank = $emptyTeam->eastRank();
+        $myWestRank = $emptyTeam->westRank();
+
+        $this->show('ranking', [
+            'myEastRank' => $myEastRank,
+            'myWestRank' => $myWestRank
+        ]);
+
+    }
 }

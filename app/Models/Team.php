@@ -208,4 +208,37 @@ class Team {
 
         return $oneTeam;
     }
+
+    public function eastRank() {
+
+        // connecter la BDD
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+
+        // exécuter la requête
+        $sql = "SELECT * FROM `team` INNER JOIN `ranking` ON team.id = ranking.team_id WHERE conference = 0 ORDER BY `conf_rank` ASC";
+        // query() pour une sélection
+        $pdoStatement = $pdo->query($sql);
+
+        // récupérer les résultats et les renvoyer
+        $easternRank = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
+
+        return $easternRank;
+
+    }
+
+    public function westRank() {
+    
+        // connecter la BDD
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+
+        // exécuter la requête
+        $sql = "SELECT * FROM `team` INNER JOIN `ranking` ON team.id = ranking.team_id WHERE conference = 1 ORDER BY `conf_rank` ASC";
+        // query() pour une sélection
+        $pdoStatement = $pdo->query($sql);
+
+        // récupérer les résultats et les renvoyer
+        $easternRank = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
+
+        return $easternRank; 
+    }
 }
