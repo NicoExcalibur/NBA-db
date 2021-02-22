@@ -9,7 +9,6 @@
         </thead>
         <tbody>
             <tr>
-                <td>Portrait</td>
                 <td>Poste</td>
                 <td>Points (moy)</td>
                 <td>Passes décisives (moy)</td>

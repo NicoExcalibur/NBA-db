@@ -8,14 +8,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>#</td>
                     <td>Nom</td>
                     <td>Logo</td>
                     <td>Titres NBA</td>
                 </tr>
                 <?php foreach ($viewData['eastTeamList'] as $team) : ?>
                 <tr>
-                    <td><?= $team->getId(); ?></td>
                     <td><a href="<?= $router->generate('single-team', ['id' => $team->getId()]); ?>"><?= $team->getName(); ?></a></td>
                     <td><img src="<?= $team->getLogo(); ?>" alt="Logo de <?= $team->getName(); ?>"></td>
                     <td><?= $team->getChampNbr(); ?></td>
@@ -34,14 +32,12 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>#</td>
                     <td>Nom</td>
                     <td>Logo</td>
                     <td>Titres NBA</td>
                 </tr>
                 <?php foreach ($viewData['westTeamList'] as $team) : ?>
                 <tr>
-                    <td><?= $team->getId(); ?></td>
                     <td><a href="<?= $router->generate('single-team', ['id' => $team->getId()]); ?>"><?= $team->getName(); ?></a></td>
                     <td><img src="<?= $team->getLogo(); ?>" alt="Logo de <?= $team->getName(); ?>"></td>
                     <td><?= $team->getChampNbr(); ?></td>

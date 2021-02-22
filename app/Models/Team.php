@@ -163,7 +163,7 @@ class Team {
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
         // exécuter la requête
-        $sql = "SELECT * FROM `team` WHERE `conference` = 0";
+        $sql = "SELECT * FROM `team` WHERE `conference` = 0 ORDER BY `name` ASC";
         // query() pour une sélection
         $pdoStatement = $pdo->query($sql);
 
@@ -179,7 +179,7 @@ class Team {
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
         // exécuter la requête
-        $sql = "SELECT * FROM `team` WHERE `conference` = 1";
+        $sql = "SELECT * FROM `team` WHERE `conference` = 1 ORDER BY `name` ASC";
         // query() pour une sélection
         $pdoStatement = $pdo->query($sql);
 
