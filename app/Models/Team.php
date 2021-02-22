@@ -188,4 +188,24 @@ class Team {
 
         return $Westernteams;
     }
+
+    public function find($id)
+    {
+        // connecter la BDD
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+        
+        $sql = "SELECT * FROM team WHERE id = {$id};";
+        
+        // Je donne à PDO ma requete SQL
+        // PDO me répond sous la forme d'un "jeu de résultat"
+        $pdoStatement = $pdo->query($sql);
+
+        // SI je souhaite récuperer un seul produit sous la forme d'un tableau assoc
+        // je fait un fetch....
+        // Si je souhaite récuperer un seul produit sous la forme d'une instance
+        // je fait un fetchObject
+        $oneTeam = $pdoStatement->fetchObject('Team');
+
+        return $oneTeam;
+    }
 }

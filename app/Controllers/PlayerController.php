@@ -2,7 +2,6 @@
 
 class PlayerController {
 
-     //afficher la home
     public function playerListPage() {
 
         $playerModel = new Player();
@@ -40,6 +39,9 @@ class PlayerController {
     private function show($viewName, $viewData = []) {
 
         global $router;
+
+         // définir l'url absolue pour nos assets
+         $viewData['assetsBaseUri'] = $_SERVER['BASE_URI'] . '/assets/';
 
         require __DIR__ . '/../Views/header.tpl.php';
         require __DIR__ . "/../Views/{$viewName}.tpl.php";

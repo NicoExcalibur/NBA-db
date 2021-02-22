@@ -1,4 +1,3 @@
-<?php dump($router);?> 
 <table>
     <thead>
         <tr>

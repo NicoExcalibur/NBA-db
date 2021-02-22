@@ -1,3 +1,7 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 table,
 td {
     border: 1px solid #333;
@@ -12,4 +16,34 @@ tfoot {
 
 img {
     height: 50px
+}
+
+.wrapper,
+.players {
+    display: flex;
+    justify-content: space-around;
+}
+
+.players {
+    flex-direction: row;
+}
+
+.single-player {
+    display: flex;
+    justify-content: center;
+}
+
+.player-card {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+}
+
+.player-card img, 
+.single-player img {
+    height: 150px;
+}
+
+.player-card p {
+    text-align: center;
 }

@@ -1,5 +1,6 @@
-<?php dump($viewData);?> 
-<div>
+<div class="single-player">
+    <div><img src="<?= $viewData['myPlayer']->getPhoto(); ?>" alt="Portrait de <?= $viewData['myPlayer']->getName(); ?>"></div>
+    
     <table>
         <thead>
             <tr>
@@ -16,9 +17,8 @@
                 <td>Contres (moy)</td>
                 <td>Equipe</td>
             </tr>
-            
+    
             <tr>
-                <td><img src="<?= $viewData['myPlayer']->getPhoto(); ?>" alt="Portrait de <?= $viewData['myPlayer']->getName(); ?>"></td>
                 <td><?= $viewData['myPlayer']->getPosition(); ?></td>
                 <td><?= $viewData['myPlayer']->getPointsAvg(); ?></td>
                 <td><?= $viewData['myPlayer']->getAssistsAvg(); ?></td>

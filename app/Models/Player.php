@@ -215,4 +215,24 @@ class Player {
 
         return $onePlayer;
     }
+
+    public function findPlayersByTeamId($id)
+    {
+        // connecter la BDD
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+        
+        $sql = "SELECT * FROM player WHERE player.team_id = {$id};";
+        
+        // Je donne à PDO ma requete SQL
+        // PDO me répond sous la forme d'un "jeu de résultat"
+        $pdoStatement = $pdo->query($sql);
+
+        // SI je souhaite récuperer un seul produit sous la forme d'un tableau assoc
+        // je fait un fetch....
+        // Si je souhaite récuperer un seul produit sous la forme d'une instance
+        // je fait un fetchObject
+        $playersByTeamId = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+
+        return $playersByTeamId;
+    }
 }
