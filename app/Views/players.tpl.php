@@ -1,3 +1,5 @@
+<?php dump($viewData); ?>
+<a href="<?= $router->generate('player-add') ?>"><button>Ajouter un joueur</button></a>
 <table>
     <thead>
         <tr>

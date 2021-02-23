@@ -1,3 +1,5 @@
+<a href="<?= $router->generate('player-update', ['id' => $viewData['myPlayer']->getId()]); ?>"><button> Modifier ce joueur </button></a>
+
 <div class="single-player">
     <div><img src="<?= $viewData['myPlayer']->getPhoto(); ?>" alt="Portrait de <?= $viewData['myPlayer']->getName(); ?>"></div>
     

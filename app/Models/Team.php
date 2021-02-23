@@ -2,43 +2,13 @@
 
 // namespace app\Models;
 
-class Team {
+class Team extends CoreModel{
     
-    private $id;
-    private $name;
     private $logo;
     private $champ_nbr;
     private $victories;
     private $defeats;
     private $conference;
-
-    /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Get the value of name
-     */ 
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set the value of name
-     *
-     * @return  self
-     */ 
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
 
      /**
      * Get the value of logo
@@ -240,5 +210,21 @@ class Team {
         $easternRank = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
 
         return $easternRank; 
+    }
+
+    public function getTeamById() {
+
+         // connecter la BDD
+         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+
+         // exécuter la requête
+         $sql = "SELECT team.`name` FROM `player` INNER JOIN `team` ON team.id = player.team_id WHERE team.id = player.team_id";
+         // query() pour une sélection
+         $pdoStatement = $pdo->query($sql);
+ 
+         // récupérer les résultats et les renvoyer
+         $teamsById = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+ 
+         return $teamsById; 
     }
 }

@@ -10,6 +10,7 @@ require __DIR__ . '/../app/Controllers/PlayerController.php';
 require __DIR__ . '/../app/Controllers/TeamController.php';
 
 // Mes classes
+require __DIR__ . '/../app/Models/CoreModel.php';
 require __DIR__ . '/../app/Models/Team.php';
 require __DIR__ . '/../app/Models/Player.php';
 
@@ -50,6 +51,26 @@ $router->map(
 
 $router->map(
     'GET',
+    '/players/add',
+    [
+        'method' => 'add',
+        'controller' => 'PlayerController'
+    ],
+    'player-add'
+);
+
+$router->map(
+    'POST',
+    '/players/add',
+    [
+        'method' => 'create',
+        'controller' => 'PlayerController'
+    ],
+    'player-create'
+);
+
+$router->map(
+    'GET',
     '/teams/[i:id]',
     [
         'method' => 'team',
@@ -67,6 +88,27 @@ $router->map(
     ],
     'ranking'
 );
+
+$router->map(
+    'GET',
+    '/players/update/[i:id]',
+    [
+        'controller' => 'PlayerController',
+        'method' => 'showUpdate',
+    ],
+    'player-update'
+);
+
+$router->map(
+    'POST',
+    '/players/update/[i:id]',
+    [
+        'controller' => 'PlayerController',
+        'method' => 'edit',
+    ],
+    'player-update-post'
+);
+
 
 // comparer cette route aux routes qui correspondent aux pages existantes
 $match = $router->match();

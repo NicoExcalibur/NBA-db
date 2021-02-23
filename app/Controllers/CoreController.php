@@ -14,4 +14,13 @@ class CoreController {
         require __DIR__ . "/../Views/{$viewName}.tpl.php";
         require __DIR__ . '/../Views/footer.tpl.php';
     }
+
+       /**
+     * Méthode permettant de rediriger l'utilisateur, dans tous les controllers.
+     */
+    public function redirect($route) {
+        global $router;
+
+        header('Location: '. $router->generate($route));
+    }
 }
