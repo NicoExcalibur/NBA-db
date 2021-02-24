@@ -160,6 +160,8 @@ class PlayerController extends CoreController {
             
             // @copyright Quentin Brh.
             $this->redirect('player-list');
+        }else{
+            echo ('Erreur');
         }
     }
 }

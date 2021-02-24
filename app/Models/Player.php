@@ -249,7 +249,7 @@ class Player extends CoreModel{
                     rebounds_avg = :rebounds_avg,
                     blocks_avg = :blocks_avg,
                     photo = :photo,
-                    team_id = :team_id,
+                    team_id = :team_id
                 WHERE
                     id = :id';
 
@@ -267,12 +267,13 @@ class Player extends CoreModel{
         $pdoStatement->bindValue(':team_id', $this->team_id, PDO::PARAM_INT);
         $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
 
+
         // Est ce que ma requete c'est bien executée
         $executed = $pdoStatement->execute();
-
+        
         // Combien de lignes à elle modifié ?
         $updatedRows = $pdoStatement->rowCount();
-
+        
         // Si mon produit à bien été modifié en base
         if ($executed && $updatedRows === 1) {
 
@@ -286,23 +287,23 @@ class Player extends CoreModel{
     }
 
     // TODO
-    // public function delete()
-    // {
-    //     // Appel de notre interprète SQL : PDO
-    //     $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+    public function delete()
+    {
+        // Appel de notre interprète SQL : PDO
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-    //     // Ecriture de la requête DELETE
-    //     $sql = 'DELETE FROM `player` WHERE `id` = :id';
+        // Ecriture de la requête DELETE
+        $sql = 'DELETE FROM `player` WHERE `id` = :id';
 
-    //     // Préparation de la requete SQL
-    //     $pdoStatement = $pdo->prepare($sql);
+        // Préparation de la requete SQL
+        $pdoStatement = $pdo->prepare($sql);
 
-    //     // J'indique à pdoStatement la correspondance entre mes :truc et la bonne valeur
-    //     $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
+        // J'indique à pdoStatement la correspondance entre mes :truc et la bonne valeur
+        $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
 
-    //     // Est ce que ma requete c'est bien executée
-    //     return $pdoStatement->execute();
-    // }
+        // Est ce que ma requete c'est bien executée
+        return $pdoStatement->execute();
+    }
 
     public function findPlayersByTeamId($id)
     {
