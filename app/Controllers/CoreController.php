@@ -2,26 +2,33 @@
 
 class CoreController {
 
-    //affiche la vue (protected pour qu'elle soit dispo dans toutres les autres vues)
+    /**
+     * Methods that display the view (protected to get available in all controllers)
+     *
+     * @return void
+     */
     protected function show($viewName, $viewData = []) {
 
+        // set $router in global to retrieve it in all views
         global $router;
 
-         // définir l'url absolue pour nos assets
-         $viewData['assetsBaseUri'] = $_SERVER['BASE_URI'] . '/assets/';
+        // define the absolute url for our assets
+        $viewData['assetsBaseUri'] = $_SERVER['BASE_URI'] . '/assets/';
 
         require __DIR__ . '/../Views/header.tpl.php';
         require __DIR__ . "/../Views/{$viewName}.tpl.php";
         require __DIR__ . '/../Views/footer.tpl.php';
     }
 
-       /**
-     * Méthode permettant de rediriger l'utilisateur, dans tous les controllers.
+    /**
+     * Method to redirect the user, in every controller
+     *
+     * @return void
      */
-    public function redirect($route) {
+    protected function redirect($route) {
 
         global $router;
-        
+
         header('Location: '. $router->generate($route));
     }
 }

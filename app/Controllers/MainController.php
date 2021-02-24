@@ -2,17 +2,22 @@
 
 class MainController extends CoreController{
 
-    //afficher la home
+    /**
+     * Methods that send the datas needed on the home 
+     *
+     * @return void
+     */
     public function home() {
 
-        //récup les équipes en page d'accueil
+        // retrieve all teams from Eastern conf.
         $eastTeamModel = new Team();
-        $eastTeamList = $eastTeamModel->findAllEast(); // on récupère un array d'objets Team
+        $eastTeamList = $eastTeamModel->findAllEast(); // array of objects
 
+        // retrieve all teams from Western conf.
         $westTeamModel = new Team();
-        $westTeamList = $westTeamModel->findAllWest(); // on récupère un array d'objets Team
+        $westTeamList = $westTeamModel->findAllWest(); // array of objects
 
-        // afficher la vue (dernière ligne droite !
+        // Send the datas to the view
         $this->show('home', [
             'eastTeamList'   => $eastTeamList,
             'westTeamList'   => $westTeamList

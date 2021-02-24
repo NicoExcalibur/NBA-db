@@ -22,7 +22,7 @@ abstract class CoreModel {
      *
      * @return  int
      */
-    public function getId() : int
+    protected function getId() : int
     {
         return $this->id;
     }
@@ -30,7 +30,7 @@ abstract class CoreModel {
     /**
      * Get the value of name
      */ 
-    public function getName()
+    protected function getName()
     {
         return $this->name;
     }
@@ -40,7 +40,7 @@ abstract class CoreModel {
      *
      * @return  self
      */ 
-    public function setName($name)
+    protected function setName($name)
     {
         $this->name = $name;
 
@@ -54,7 +54,7 @@ abstract class CoreModel {
      *
      * @return  bool
      */ 
-    public function save()
+    protected function save()
     {
         // if the id property of my object is empty :
         if (empty($this->id)) {           

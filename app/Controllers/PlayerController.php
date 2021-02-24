@@ -2,54 +2,65 @@
 
 class PlayerController extends CoreController {
 
+    /**
+     * Get a list of all players and send them to the view
+     * 
+     * @return void
+     */
     public function playerListPage() {
 
+        // retrieve all players
         $playerModel = new Player();
         $playerList = $playerModel->findAllPlayers();
         
-        // TODO
+        // TODO WIP
         // $teamModel = new Team();
         // $teamList = $teamModel->getTeamById();
 
-        // dump($teamList); die;
-
-        // afficher la vue (dernière ligne droite !
+        // send the players datas to the view
         $this->show('players', [
             'playerList' => $playerList
             // 'teamList' => $teamList 
         ]);
     }
     
+    /**
+     * Get a the current player with his id in the url
+     * 
+     * @return void
+     */
     public function player($id) {
-        // dd('Je vais aller chercher en base de donnée le produit dont l id est: '. $urlParams['product_id']);
 
-        // Je créé une instance vide de la classe Product afin de pouvoir utiliser la méthode find
+        // retrieve the player with his id in the url
         $emptyPlayer = new Player();
-
         $myPlayer = $emptyPlayer->find($id['id']);
         
-        // Si le produit demandé n'existe pas...
+        // If the player doesn't exists...
         if ($myPlayer === false) {
 
-            // J'affiche la 404 et je return de manière à stoper mon code là
+            // display error
             exit ('erreur 404');
+        
         }
 
+        // send the player datas to the view
         $this->show('single-player', [
             'myPlayer' => $myPlayer
         ]);
     }
 
     /**
-     * Affiche la page d'ajout d'un joueur
+     * Display the add form
+     * 
+     * @return void
      */
     public function add()
     {
-        // On commence par récupérer tous les Models Student
-        // pour transmettre ensuite à la view
+        // retrieve all players
         $emptyPlayer = new Player();
         $players = $emptyPlayer->findAllPlayers();
-       
+        
+        // send the players datas to the view
         $this->show('add', [
             'players' => $players
         ]);
@@ -57,13 +68,14 @@ class PlayerController extends CoreController {
     }
 
     /**
-     * Méthode permettant d'insérer un nouvel étudiant en BDD
+     * Method that creates a new row in the DB and redirects to the player list page
+     * 
+     * @return void
      */
     public function create()
-    {
-        
-        // Filter input permet de récupérer les valeurs depuis $_POST (ou $_GET, ou $_COOKIE...) puis de leur appliquer un filtre.
-        // On peut trouver ces filtres sur la page  https://www.php.net/manual/fr/filter.filters.php
+    {       
+        // Filters the inputs from $_POST
+        //https://www.php.net/manual/fr/filter.filters.php
         $position = filter_input(INPUT_POST, 'position', FILTER_SANITIZE_STRING);
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
         $points_avg = filter_input(INPUT_POST, 'points_avg', FILTER_SANITIZE_STRING);
@@ -73,11 +85,10 @@ class PlayerController extends CoreController {
         $photo = filter_input(INPUT_POST, 'photo', FILTER_SANITIZE_URL);
         $team_id = filter_input(INPUT_POST, 'team_id', FILTER_SANITIZE_NUMBER_INT);
         
-        // dump($photo);
-        // On crée un nouveau Model
+        // We create a new instance
         $player = new Player();
 
-        // On renseigne les propriétés
+        // And we set the properties with our datas
         $player->setPosition($position);
         $player->setName($name);
         $player->setPointsAvg($points_avg);
@@ -87,53 +98,60 @@ class PlayerController extends CoreController {
         $player->setPhoto($photo);
         $player->setTeamId($team_id);
         
-        // dump($player);
 
-        // On sauvergarde en DB
+        // Call the save method DB
         if ($player->save()) {
     
-            // @copyright Quentin Brh.
+            // redirect to the path (path's name)
             $this->redirect('player-list');
         }
     }
 
-     /**
-     * Méthode s'occupant d'afficher le formulaire de modification d'un produit
+    /**
+     * Method that display the update form and send datas on it
      *
      * @return void
      */
     public function showUpdate($id)
     {
-        // Je récupere le player dont l'id est passé dans l'url
+        // retrieve the player with his id in the url
         $emptyPlayer = new Player();
         $myPlayer = $emptyPlayer->find($id['id']);
         
-        // Si le produit demandé n'existe pas...
+        // If he doesn't exists...
         if ($myPlayer === false) {
 
-        // J'affiche la 404 et je return de manière à stoper mon code là
+        // display error
         exit ('erreur 404');
+        
         }
 
+        // send the players datas to the view
         $this->show('update', [
             'myPlayer' => $myPlayer
         ]);
     }
 
+    /**
+     * Method that update the current player with his id in the url
+     *
+     * @return void
+     */
     public function edit($id)
     {
-        // Je récupere le player dont l'id est passé dans l'url
-
+        // retrieve the player with his id in the url
         $emptyPlayer = new Player();
         $player = $emptyPlayer->find($id['id']);
         
-        // Si le produit demandé n'existe pas...
+        // If he doesn't exists...
         if ($player === false) {
 
-        // J'affiche la 404 et je return de manière à stoper mon code là
+        // display error
         exit ('erreur 404');
+        
         } 
-
+        // Filters the inputs from $_POST
+        //https://www.php.net/manual/fr/filter.filters.php
         $position = filter_input(INPUT_POST, 'position', FILTER_SANITIZE_STRING);
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
         $points_avg = filter_input(INPUT_POST, 'points_avg', FILTER_SANITIZE_STRING);
@@ -143,7 +161,7 @@ class PlayerController extends CoreController {
         $photo = filter_input(INPUT_POST, 'photo', FILTER_SANITIZE_URL);
         $team_id = filter_input(INPUT_POST, 'team_id', FILTER_SANITIZE_NUMBER_INT);
 
-        // On renseigne les propriétés
+        // And we set the properties with our datas
         $player->setPosition($position);
         $player->setName($name);
         $player->setPointsAvg($points_avg);
@@ -155,27 +173,32 @@ class PlayerController extends CoreController {
         
         if ($player->save()) {
             
-            // @copyright Quentin Brh.
             $this->redirect('player-list');
         }else{
-            echo ('Erreur');
+            echo ('Error');
         }
     }
 
+    /**
+     * Method that deletes the current player with his id in the url
+     *
+     * @return void
+     */
     public function delete($id)
     {
         $emptyPlayer = new Player();
         $player = $emptyPlayer->find($id['id']);
 
-        // En premier lieu, je vérifie si elle existe bien !
         if (empty($player)) {
 
             exit ('erreur 404');
         }
 
-        $player->delete();
-
-        // A partir là je vais indiquer à mon navigateur d'aller sur cette URL là
-        header('Location: '.$router->generate('player-list'));
+        if ($player->delete()) {
+            
+            $this->redirect('player-list');
+        }else{
+            echo ('Error');
+        }
     }
 }
