@@ -109,6 +109,16 @@ $router->map(
     'player-update-post'
 );
 
+$router->map(
+    'GET',
+    '/players/delete/[i:id]',
+    [
+        'controller' => 'PlayerController',
+        'method' => 'delete',
+    ],
+    'player-delete'
+);
+
 
 // comparer cette route aux routes qui correspondent aux pages existantes
 $match = $router->match();

@@ -124,7 +124,8 @@ class PlayerController extends CoreController {
     {
         // Je récupere le player dont l'id est passé dans l'url
 
-        $player = Player::find($id['id']);
+        $emptyPlayer = new Player();
+        $myPlayer = $emptyPlayer->find($id['id']);
         
         // Si le produit demandé n'existe pas...
         if ($player === false) {
@@ -163,5 +164,25 @@ class PlayerController extends CoreController {
         }else{
             echo ('Erreur');
         }
+    }
+
+    public function delete($id)
+    {
+        $emptyPlayer = new Player();
+        $player = $emptyPlayer->find($id['id']);
+
+        // En premier lieu, je vérifie si elle existe bien !
+        if (empty($player)) {
+
+            exit ('erreur 404');
+        }
+
+        $player->delete();
+
+        // Un peu crade mais necessaire ici
+        global $router;
+
+        // A partir là je vais indiquer à mon navigateur d'aller sur cette URL là
+        header('Location: '.$router->generate('player-list'));
     }
 }
