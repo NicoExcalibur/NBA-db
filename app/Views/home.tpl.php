@@ -1,3 +1,4 @@
+<?php dump($viewData); ?>
 <div class="wrapper">
     <div class="east">
         <table>

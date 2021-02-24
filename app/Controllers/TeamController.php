@@ -2,31 +2,39 @@
 
 class TeamController extends CoreController {
 
+    /**
+     * Get a list of all teams and send them to the view
+     */
     public function team($id) {
-        // dd('Je vais aller chercher en base de donnée le produit dont l id est: '. $id['id']);
-
-        // Je créé une instance vide de la classe Product afin de pouvoir utiliser la méthode find
+        
+        //retrieve a team with his id in the url
         $emptyTeam = new Team();
         $myTeam = $emptyTeam->find($id['id']);
 
+        //retrieve all players that have the team id in the url
         $playerModel = new Player();
         $playerList = $playerModel->findPlayersByTeamId($id['id']);
         
-        // Si le produit demandé n'existe pas...
+        // If the team doesn't exists...
         if ($myTeam === false) {
 
-            // J'affiche la 404 et je return de manière à stoper mon code là
+            // display error
             exit ('erreur 404');
         }
 
+        // send datas to the view
         $this->show('single-team', [
             'myTeam' => $myTeam,
             'playerList' => $playerList
         ]);
     }
 
+    /**
+     * Get a list of all teams ordered by ranking in their conf. and send the datas * to the view
+     */
     public function rankings() {
 
+        //retrieve all teams and order
         $emptyTeam = new Team();
         $myEastRank = $emptyTeam->eastRank();
         $myWestRank = $emptyTeam->westRank();

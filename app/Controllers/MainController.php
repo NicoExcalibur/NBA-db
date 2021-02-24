@@ -5,7 +5,6 @@ class MainController extends CoreController{
     /**
      * Methods that send the datas needed on the home 
      *
-     * @return void
      */
     public function home() {
 
