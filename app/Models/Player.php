@@ -10,12 +10,9 @@ class Player extends CoreModel{
     private $photo;
     private $team_id;
 
-
-    
-
-     /**
+    /**
      * Get the value of position
-     */ 
+     */   
     public function getPosition()
     {
         return $this->position;
@@ -25,7 +22,7 @@ class Player extends CoreModel{
      * Set the value of position
      *
      * @return  self
-     */ 
+     */  
     public function setPosition($position)
     {
         $this->position = $position;
@@ -33,9 +30,9 @@ class Player extends CoreModel{
         return $this;
     }
 
-     /**
+    /**
      * Get the value of points_avg
-     */ 
+     */
     public function getPointsAvg()
     {
         return $this->points_avg;
@@ -53,7 +50,7 @@ class Player extends CoreModel{
         return $this;
     }
 
-     /**
+    /**
      * Get the value of assists_avg
      */ 
     public function getAssistsAvg()
@@ -65,7 +62,7 @@ class Player extends CoreModel{
      * Set the value of assists_avg
      *
      * @return  self
-     */ 
+     */  
     public function setAssistsAvg($assists_avg)
     {
         $this->assists_avg = $assists_avg;
@@ -73,9 +70,9 @@ class Player extends CoreModel{
         return $this;
     }
 
-     /**
+    /**
      * Get the value of rebounds_avg
-     */ 
+     */
     public function getReboundsAvg()
     {
         return $this->rebounds_avg;
@@ -95,7 +92,7 @@ class Player extends CoreModel{
     
     /**
      * Get the value of blocks_avg
-     */ 
+     */
     public function getBlocksAvg()
     {
         return $this->blocks_avg;
@@ -125,7 +122,7 @@ class Player extends CoreModel{
      * Set the value of photo
      *
      * @return  self
-     */ 
+     */  
     public function setPhoto($photo)
     {
         $this->photo = $photo;
@@ -145,7 +142,7 @@ class Player extends CoreModel{
      * Set the value of photo
      *
      * @return  self
-     */ 
+     */  
     public function setTeamId($team_id)
     {
         $this->team_id = $team_id;
@@ -153,57 +150,85 @@ class Player extends CoreModel{
         return $this;
     }
 
+    /**
+     * Retrieve all players by name in alphabetical order
+     *
+     * @return  array
+     */  
     public function findAllPlayers()
     {
-        // connecter la BDD
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // exécuter la requête
-        $sql = "SELECT * FROM `player` ORDER BY `name`";
-        // query() pour une sélection
+        // SQL query
+        $sql = "SELECT * FROM `player` 
+            ORDER BY `name`";
+        // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
-        // récupérer les résultats et les renvoyer
+        // get results in an array and send them
         $players = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
 
         return $players;
     }
 
-    static function find($id)
+    /**
+     * Retrieve a player by the current id
+     *
+     * @return  object
+     */  
+    public function find($id)
     {
-        // connecter la BDD
+        // SQL query
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
         
-        $sql = "SELECT * FROM player WHERE id = {$id};";
+        $sql = "SELECT * FROM player 
+            WHERE id = {$id};";
         
-        // Je donne à PDO ma requete SQL
-        // PDO me répond sous la forme d'un "jeu de résultat"
+        // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
-        // SI je souhaite récuperer un seul produit sous la forme d'un tableau assoc
-        // je fait un fetch....
-        // Si je souhaite récuperer un seul produit sous la forme d'une instance
-        // je fait un fetchObject
+        // get result as a new instance and send it
         $onePlayer = $pdoStatement->fetchObject('Player');
 
         return $onePlayer;
     }
 
+    /**
+     * Insert an instance as a new row in the DB
+     *
+     * @return bool
+     */
     public function insert() {
 
-        // Appel de notre interprète SQL : PDO
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // On définit notre requête avec des tokens/mots remplaçant nos valeurs. On indique ainsi à MySQL à quoi doit ressembler la requête, peu importe nos valeurs.
-        $sql = "INSERT INTO `player` (`position`,`name`,`points_avg`, `assists_avg`, `rebounds_avg`, `blocks_avg`, `photo`, `team_id` ) 
-                VALUES (:position, :name, :points_avg, :assists_avg, :rebounds_avg, :blocks_avg, :photo, :team_id)";
+        // INSERT query with tokens (words) that represents ou values. Indicates what the query should look like whatever the values. (security check)
+        $sql = "INSERT INTO `player` 
+                                (`position`,
+                                `name`,
+                                `points_avg`, 
+                                `assists_avg`, 
+                                `rebounds_avg`, 
+                                `blocks_avg`, 
+                                `photo`, 
+                                `team_id` ) 
+                VALUES 
+                    (:position, 
+                    :name, 
+                    :points_avg, 
+                    :assists_avg, 
+                    :rebounds_avg, 
+                    :blocks_avg, 
+                    :photo, 
+                    :team_id)";
 
-        // On prépare la requête
-
+        // prepare the query to get exec and return an object
         $pdoStatement = $pdo->prepare($sql);
 
-        // On remplace les tokens par leur vraie valeur. Et en plus, on peut ajouter une seconde sécurité pour forcer le type de la donnée
-        // On utilise pour ça, la méthode bindValue : https://www.php.net/manual/fr/pdostatement.bindvalue.php
+        // Replace tokens by the true values. Add a secend security check to force value type with bindValue method
+        // https://www.php.net/manual/fr/pdostatement.bindvalue.php
 
         $pdoStatement->bindValue(':position', $this->position, PDO::PARAM_STR);
         $pdoStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
@@ -214,32 +239,32 @@ class Player extends CoreModel{
         $pdoStatement->bindValue(':photo', $this->photo, PDO::PARAM_STR);
         $pdoStatement->bindValue(':team_id', $this->team_id, PDO::PARAM_INT);
 
-        // Execution de la requête ! Execute renvoie true si la requête fonctionne
+        // Execute the query ! return true if works
         $result = $pdoStatement->execute();
 
-        // Si ma requête fonctionne
+        // if the query works
         if($result) {
-            // Je mets à jour l'ID de mon objet avec le dernier ID inséré en BDD.
+            // update the id with the id of the last entry of the table
             $this->id = $pdo->lastInsertId();
-            // On retourne pour indiquer que la requête s'est bien passée
+            // return to give the info that the query worked
             return true;
         }
 
-        // Si le code arrive jusqu'ici, c'est que la requête ne s'est pas bien passée. On renvoie false.
+        // Something went wrong (our query doesn't works)
         return false;
     }
 
-        /**
-     * Méthode qui permet de enregistrer mon instance en tant que nouvelle entrée dans ma table
+    /**
+     * Update a row that exists in the DB
      *
      * @return bool
      */
     public function update()
     {
-        // Appel de notre interprète SQL : PDO
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // Ecriture de la requête UPDATE
+        // UPDATE query with tokens
         $sql = 'UPDATE `player`
                 SET
                     position = :position,
@@ -253,10 +278,10 @@ class Player extends CoreModel{
                 WHERE
                     id = :id';
 
-        // Préparation de la requete SQL
+        // prepare the query to get exec and return an object
         $pdoStatement = $pdo->prepare($sql);
 
-        // J'indique à pdoStatement la correspondance entre mes :truc et la bonne valeur
+        // Replace tokens by the true values. Add a second security check to force value type with bindValue method
         $pdoStatement->bindValue(':position', $this->position, PDO::PARAM_STR);
         $pdoStatement->bindValue(':name', $this->name, PDO::PARAM_STR);
         $pdoStatement->bindValue(':points_avg', $this->points_avg, PDO::PARAM_STR);
@@ -267,59 +292,71 @@ class Player extends CoreModel{
         $pdoStatement->bindValue(':team_id', $this->team_id, PDO::PARAM_INT);
         $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
 
-
-        // Est ce que ma requete c'est bien executée
+        // Execute the query ! return true if works
         $executed = $pdoStatement->execute();
         
-        // Combien de lignes à elle modifié ?
+        // Counts how many row have been modified
         $updatedRows = $pdoStatement->rowCount();
         
-        // Si mon produit à bien été modifié en base
+        // If the query worked and the row have been modified
         if ($executed && $updatedRows === 1) {
 
-            // On retourne VRAI car l'ajout a parfaitement fonctionné
+            // return true the update worked
             return true;
-            // => l'interpréteur PHP sort de cette fonction car on a retourné une donnée
         }
 
-        // Si on arrive ici, c'est que quelque chose n'a pas bien fonctionné => FAUX
+        // Something went wrong (our query doesn't works or more/less than one row have been modified)
         return false;
     }
 
-    // TODO
+    /**
+     * Deletes a row that exists in the DB
+     *
+     * @return bool
+     */
     public function delete()
     {
-        // Appel de notre interprète SQL : PDO
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // Ecriture de la requête DELETE
+        // DELETE query
         $sql = 'DELETE FROM `player` WHERE `id` = :id';
 
-        // Préparation de la requete SQL
+        // prepare the query to get exec and return an object
         $pdoStatement = $pdo->prepare($sql);
 
-        // J'indique à pdoStatement la correspondance entre mes :truc et la bonne valeur
+        // Indicates to PDOstatement the connection between the token and the value
         $pdoStatement->bindValue(':id', $this->id, PDO::PARAM_INT);
 
-        // Est ce que ma requete c'est bien executée
-        return $pdoStatement->execute();
+        $executed = $pdoStatement->execute();
+        
+        if ($executed) {
+
+            // return true the deletion worked
+            return true;
+        }
+
+        // Something went wrong (our query doesn't works)
+        return false;
     }
 
+    /**
+     * Retrieve all players that get the current team id
+     *
+     * @return array
+     */
     public function findPlayersByTeamId($id)
     {
-        // connecter la BDD
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
         
+        // SQL query to get all players from the current team id
         $sql = "SELECT * FROM player WHERE player.team_id = {$id};";
         
-        // Je donne à PDO ma requete SQL
-        // PDO me répond sous la forme d'un "jeu de résultat"
+        // execute the query and set the result as a PDOStatement object        
         $pdoStatement = $pdo->query($sql);
 
-        // SI je souhaite récuperer un seul produit sous la forme d'un tableau assoc
-        // je fait un fetch....
-        // Si je souhaite récuperer un seul produit sous la forme d'une instance
-        // je fait un fetchObject
+        // get results in an array and send them
         $playersByTeamId = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
 
         return $playersByTeamId;

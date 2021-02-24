@@ -19,8 +19,9 @@ class CoreController {
      * Méthode permettant de rediriger l'utilisateur, dans tous les controllers.
      */
     public function redirect($route) {
-        global $router;
 
+        global $router;
+        
         header('Location: '. $router->generate($route));
     }
 }

@@ -125,7 +125,7 @@ class PlayerController extends CoreController {
         // Je récupere le player dont l'id est passé dans l'url
 
         $emptyPlayer = new Player();
-        $myPlayer = $emptyPlayer->find($id['id']);
+        $player = $emptyPlayer->find($id['id']);
         
         // Si le produit demandé n'existe pas...
         if ($player === false) {
@@ -143,10 +143,7 @@ class PlayerController extends CoreController {
         $photo = filter_input(INPUT_POST, 'photo', FILTER_SANITIZE_URL);
         $team_id = filter_input(INPUT_POST, 'team_id', FILTER_SANITIZE_NUMBER_INT);
 
-        // $player = new Player();
-
         // On renseigne les propriétés
-
         $player->setPosition($position);
         $player->setName($name);
         $player->setPointsAvg($points_avg);
@@ -156,7 +153,6 @@ class PlayerController extends CoreController {
         $player->setPhoto($photo);
         $player->setTeamId($team_id);
         
-        // dump($player);
         if ($player->save()) {
             
             // @copyright Quentin Brh.
@@ -178,9 +174,6 @@ class PlayerController extends CoreController {
         }
 
         $player->delete();
-
-        // Un peu crade mais necessaire ici
-        global $router;
 
         // A partir là je vais indiquer à mon navigateur d'aller sur cette URL là
         header('Location: '.$router->generate('player-list'));

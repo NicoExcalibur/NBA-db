@@ -1,24 +1,24 @@
 <?php
 
-// inclure les dépendances composer
+// include Composer's dependances
 require __DIR__ . '/../vendor/autoload.php';
 
-// Mes controllers
+// include my controllers
 require __DIR__ . '/../app/Controllers/CoreController.php';
 require __DIR__ . '/../app/Controllers/MainController.php';
 require __DIR__ . '/../app/Controllers/PlayerController.php';
 require __DIR__ . '/../app/Controllers/TeamController.php';
 
-// Mes classes
+// include my Models
 require __DIR__ . '/../app/Models/CoreModel.php';
 require __DIR__ . '/../app/Models/Team.php';
 require __DIR__ . '/../app/Models/Player.php';
 
-// récupérer la route qui a été demandée par l'utilisateur
+// define the base path
 $router = new AltoRouter;
 $router->setBasePath('/NBAdb/public');
 
-// déclarer les routes
+// mapping paths
 $router->map(
     'GET',
     '/',
@@ -120,20 +120,18 @@ $router->map(
 );
 
 
-// comparer cette route aux routes qui correspondent aux pages existantes
+// comparing my path to existing paths
 $match = $router->match();
 
 if ($match === false) {
     exit ('erreur 404');
 }
 
-// déclencher la méthode de contrôleur qui correspond <= objectif du frontcontroller
-// Récupérer le nom de la méthode et le nom de la classe de controller à utiliser
+// triggers controller's method <= frontcontroller
+// get method's, controller's and arguments names to use
 $methodName = $match['target']['method'];
 $controllerName = $match['target']['controller'];
 $arguments = $match['params'];
-
-// dump($match); die;
 
 $controller = new $controllerName();
 $controller->$methodName($arguments);

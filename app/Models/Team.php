@@ -1,7 +1,5 @@
 <?php
 
-// namespace app\Models;
-
 class Team extends CoreModel{
     
     private $logo;
@@ -10,7 +8,7 @@ class Team extends CoreModel{
     private $defeats;
     private $conference;
 
-     /**
+    /**
      * Get the value of logo
      */ 
     public function getLogo()
@@ -30,7 +28,7 @@ class Team extends CoreModel{
         return $this;
     }
 
-      /**
+    /**
      * Get the value of champ_nbr
      */ 
     public function getChampNbr()
@@ -110,121 +108,141 @@ class Team extends CoreModel{
         return $this;
     }
 
-
-    public function findAllForHomepage()
-    {
-        // connecter la BDD
-        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
-
-        // exécuter la requête
-        $sql = "SELECT * FROM `team`";
-        // query() pour une sélection
-        $pdoStatement = $pdo->query($sql);
-
-        // récupérer les résultats et les renvoyer
-        $teams = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
-
-        return $teams;
-    }
-
+    /**
+     * Retrieve all teams from the Estern conference
+     *
+     * @return  array
+     */
     public function findAllEast()
     {
-        // connecter la BDD
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // exécuter la requête
-        $sql = "SELECT * FROM `team` WHERE `conference` = 0 ORDER BY `name` ASC";
-        // query() pour une sélection
+        // SQL query
+        $sql = "SELECT * FROM `team` 
+            WHERE `conference` = 0 
+            ORDER BY `name` ASC";
+        // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
-        // récupérer les résultats et les renvoyer
+        // get results in an array and send them
         $Easternteams = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
 
         return $Easternteams;
     }
 
+    /**
+     * Retrieve all teams from the Western conference
+     *
+     * @return  array
+     */
     public function findAllWest()
     {
-        // connecter la BDD
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // exécuter la requête
-        $sql = "SELECT * FROM `team` WHERE `conference` = 1 ORDER BY `name` ASC";
-        // query() pour une sélection
+        // SQL query
+        $sql = "SELECT * FROM `team` 
+            WHERE `conference` = 1 
+            ORDER BY `name` ASC";
+        // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
-        // récupérer les résultats et les renvoyer
+        // get results in an array and send them
         $Westernteams = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
 
         return $Westernteams;
     }
 
+    /**
+     * Retrieve a team that get the current id
+     *
+     * @return  object
+     */
     public function find($id)
     {
-        // connecter la BDD
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
         
-        $sql = "SELECT * FROM team WHERE id = {$id};";
+        // SQL query
+        $sql = "SELECT * FROM `team` 
+            WHERE `id` = {$id};";
         
-        // Je donne à PDO ma requete SQL
-        // PDO me répond sous la forme d'un "jeu de résultat"
+        // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
-        // SI je souhaite récuperer un seul produit sous la forme d'un tableau assoc
-        // je fait un fetch....
-        // Si je souhaite récuperer un seul produit sous la forme d'une instance
-        // je fait un fetchObject
+        // get result as a new instance and send it
         $oneTeam = $pdoStatement->fetchObject('Team');
 
         return $oneTeam;
     }
 
+    /**
+     * Retrieve all teams from the Eastern conference & order them by their rank
+     *
+     * @return  array
+     */
     public function eastRank() {
 
-        // connecter la BDD
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // exécuter la requête
-        $sql = "SELECT * FROM `team` INNER JOIN `ranking` ON team.id = ranking.team_id WHERE conference = 0 ORDER BY `conf_rank` ASC";
-        // query() pour une sélection
+        // SQL query
+        $sql = "SELECT * FROM `team` INNER JOIN `ranking` 
+            ON team.id = ranking.team_id 
+            WHERE conference = 0 
+            ORDER BY `conf_rank` ASC";
+        // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
-        // récupérer les résultats et les renvoyer
+        // get results in an array and send them
         $easternRank = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
 
         return $easternRank;
 
     }
 
+    /**
+     * Retrieve all teams from the Western conference & order them by their rank
+     *
+     * @return  array
+     */
     public function westRank() {
     
-        // connecter la BDD
+        // connects to DB
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-        // exécuter la requête
-        $sql = "SELECT * FROM `team` INNER JOIN `ranking` ON team.id = ranking.team_id WHERE conference = 1 ORDER BY `conf_rank` ASC";
-        // query() pour une sélection
+        // SQL query
+        $sql = "SELECT * FROM `team` INNER JOIN `ranking` 
+            ON `team`.`id` = `ranking`.`team_id` 
+            WHERE `conference` = 1 
+            ORDER BY `conf_rank` ASC";
+        // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
-        // récupérer les résultats et les renvoyer
+        // get results in an array and send them
         $easternRank = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
 
         return $easternRank; 
     }
 
-    public function getTeamById() {
+    //TODO WIP
+    // public function getTeamById() {
 
-         // connecter la BDD
-         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+    //     // connects to DB
+    //     $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
-         // exécuter la requête
-         $sql = "SELECT team.`name` FROM `player` INNER JOIN `team` ON team.id = player.team_id WHERE team.id = player.team_id";
-         // query() pour une sélection
-         $pdoStatement = $pdo->query($sql);
+    //     // SQL query
+    //     $sql = "SELECT `team`.`name` FROM `player` 
+    //         INNER JOIN `team` 
+    //         ON `team`.`id` = `player`.`team_id` 
+    //         WHERE `team`.`id` = `player`.`team_id`";
+    //     // execute the query and set the result as a PDOStatement object
+    //     $pdoStatement = $pdo->query($sql);
  
-         // récupérer les résultats et les renvoyer
-         $teamsById = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+    //     // get results in an array and send them
+    //     $teamsById = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
  
-         return $teamsById; 
-    }
+    //     return $teamsById; 
+    // }
 }

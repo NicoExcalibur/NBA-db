@@ -1,15 +1,12 @@
 <?php
-// Classe mère de tous les Models
-// On centralise ici toutes les propriétés et méthodes utiles pour TOUS les Models
+// "Mother class" for all Models
+// We put here toutes all attributes (or properties) and methods used by ALL Models
 /**
- * Cette classe, CoreModel, n'est pas là pour "représenter" une table
- * en base de donnée.
- * Son seul et unique but est bien d'être étendue (extends...)
- * Il est donc "acté" que cette classe ne sera jamais instanciée
- * Nous n'aurons jamais besoin de faire un new CoreModel.
- * C'est ainsi et PHP accepte bien cette idée là !
+ * This class, CoreModel, doesn't "represents" a table in DB
+ * It only purpose is to be extended (extends...)
  */
 abstract class CoreModel {
+    
     /**
      * @var int
      */
@@ -50,28 +47,23 @@ abstract class CoreModel {
         return $this;
     }
 
+    /**
+     * Checks if the current object exists already in DB
+     * if no -> insert a new row
+     * else -> update the row
+     *
+     * @return  bool
+     */ 
     public function save()
     {
-        // Si la propriété id de mon objet est vide
-        if (empty($this->id)) {
-            // C'est que objet ne provient pas de la BDD
-
-            // il est donc à inserer en base.
+        // if the id property of my object is empty :
+        if (empty($this->id)) {           
+            // It's not from my DB so...
             return $this->insert();
 
-        // sinon, comme la propriété id de mon objet n'est pas vide
         } else {
-
-            // c'est que mon objet provient de la BDD
-
-            // il faut donc réaliser une mise à jour de la ligne
+            // It's already in my DB so...
             return $this->update();
         }
-
-        // A chaque appel de la méthode save(), celle-ci va "choisir" quel méthode
-        // insert ou update elle doit executer sur la classe enfant.
     }
-
-    // Puisque CoreModel est une classe abstraite, elle à la possiblité
-    // d'obliger ces enfants à avoir des méthodes...
 }
