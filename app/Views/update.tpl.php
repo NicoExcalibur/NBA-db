@@ -1,6 +1,3 @@
-<?php
-dump($viewData);
-?>
 <a href="<?= $router->generate('player-list') ?>" class="">Retour</a>
 
 <h2>Modifier le joueur</h2>
