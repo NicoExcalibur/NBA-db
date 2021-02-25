@@ -7,7 +7,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="table-first-row">
                     <td>Nom</td>
                     <td>Logo</td>
                     <td>Titres NBA</td>
@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="table-first-row">
                     <td>Nom</td>
                     <td>Logo</td>
                     <td>Titres NBA</td>

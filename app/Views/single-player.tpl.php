@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr class="table-first-row">
                 <td>Poste</td>
                 <td>Points (moy)</td>
                 <td>Passes décisives (moy)</td>

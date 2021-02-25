@@ -19,6 +19,28 @@ img {
     height: 50px
 }
 
+table {
+    margin-top: 2em;
+}
+
+button {
+    margin: 1em;
+    background-color: #01579B;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #fff;
+    color: #01579B;
+    /* border inside the box */
+    box-shadow:0px 0px 0px 2px #01579B inset;
+}
+
 .wrapper,
 .players {
     display: flex;
@@ -49,6 +71,16 @@ img {
     text-align: center;
 }
 
+.player-card a {
+    color: #01579B;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.player-card a:hover {
+    color: #0091ff;
+}
+
 nav {
     display:flex;
     justify-content: space-between;
@@ -56,18 +88,21 @@ nav {
 
 .logo {
     margin-left: 2em;
+    padding: 2em;
 }
 
 nav,
 nav a {
     background-color: #01579B;
     color: white;
+    font-weight: bold;
 
 }
 
 .navbar-list {
     display: flex;
     margin-right: 2em;
+    margin-top: 2em;
 }
 
 .navbar-list li{
@@ -81,4 +116,34 @@ nav a {
 
 .team-header img {
     height: 75px;
+}
+
+.form-group {
+    margin-bottom: 1em;
+    font-weight: bold;
+}
+
+input {
+    border: #9a9a9a 1px solid;
+    border-radius: 5px;
+}
+
+.table-first-row td {
+    color: #fff;
+    font-weight: bold;
+    background-color: #01579B;
+}
+
+td a {
+    color: #01579B;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+td a:hover {
+    color: #0091ff;
+}
+
+footer {
+    text-align: center;
 }

@@ -7,7 +7,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="table-first-row">
                     <td>Rang</td>
                     <td>Nom</td>
                     <td>Logo</td>
@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr class="table-first-row">
                     <td>Rang</td>
                     <td>Nom</td>
                     <td>Logo</td>

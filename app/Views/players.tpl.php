@@ -6,7 +6,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="table-first-row">
             <td>Portrait</td>
             <td>Nom</td>
             <td>Equipe</td>
