@@ -13,7 +13,7 @@ class CoreController {
         global $router;
 
         // define the absolute url for our assets
-        $viewData['assetsBaseUri'] = $_SERVER['BASE_URI'] . '/assets/';
+        $viewData['assetsBaseUri'] = '/assets/';
 
         require __DIR__ . '/../Views/header.tpl.php';
         require __DIR__ . "/../Views/{$viewName}.tpl.php";

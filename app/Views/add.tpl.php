@@ -4,7 +4,7 @@
     <div>
         <h2>Ajouter un Joueur</h2>
         
-        <form action="http://localhost/NBAdb/public/players/add" method="POST">
+        <form method="POST">
             <div class="form-group">
                 <label for="name">Nom</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="" value="">

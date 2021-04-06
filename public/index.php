@@ -16,7 +16,6 @@ require __DIR__ . '/../app/Models/Player.php';
 
 // define the base path
 $router = new AltoRouter;
-$router->setBasePath('/NBAdb/public');
 
 // mapping paths
 $router->map(
