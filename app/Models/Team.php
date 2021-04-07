@@ -97,13 +97,33 @@ class Team extends CoreModel{
     }
 
     /**
-     * Set the value of defeats
+     * Set the value of conference
      *
      * @return  self
      */ 
     public function setConference($conference)
     {
         $this->conference = $conference;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of color
+     */ 
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set the value of color
+     *
+     * @return  self
+     */ 
+    public function setColor($color)
+    {
+        $this->color = $color;
 
         return $this;
     }

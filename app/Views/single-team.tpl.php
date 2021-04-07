@@ -2,7 +2,7 @@
     <div>
         <img src="<?= $viewData['myTeam']->getLogo(); ?>" alt="">
     </div>
-    <h1><?= $viewData['myTeam']->getName(); ?></h1>
+    <h1 style="color: #<?= $viewData['myTeam']->getColor(); ?>"><?= $viewData['myTeam']->getName(); ?></h1>
 </div>
 
 <p></p>
