@@ -12,12 +12,18 @@ class PlayerController extends CoreController {
         // retrieve all players
         $playerModel = new Player();
         $playerList = $playerModel->findAllPlayers();
-
+        // retrieve top scorers
         $topScorersModel = new Player();
         $topScorersList = $topScorersModel->findTopScorers();
-
+        // retrieve top assists
         $topAssistsModel = new Player();
-        $topAssistsList = $topAssistsModel->findTopScorers();
+        $topAssistsList = $topAssistsModel->findTopAssists();
+        // retrieve top rebounds
+        $topReboundsModel = new Player();
+        $topReboundsList = $topReboundsModel->findTopRebounds();
+         // retrieve top blocks
+         $topBlocksModel = new Player();
+         $topBlocksList = $topBlocksModel->findTopBlocks();
         
         // TODO WIP
         // $teamModel = new Team();
@@ -27,7 +33,9 @@ class PlayerController extends CoreController {
         $this->show('players', [
             'playerList' => $playerList,
             'topScorersList' => $topScorersList,
-            'topAssistsList' => $topAssistsList
+            'topAssistsList' => $topAssistsList,
+            'topReboundsList' => $topReboundsList,
+            'topBlocksList' => $topBlocksList
             // 'teamList' => $teamList 
         ]);
     }

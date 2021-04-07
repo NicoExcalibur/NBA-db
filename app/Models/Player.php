@@ -386,7 +386,7 @@ class Player extends CoreModel{
     }
 
      /**
-     * Retrieve the list of 5 best player by score
+     * Retrieve the list of 5 best player by assists
      *
      * @return  object
      */  
@@ -406,5 +406,51 @@ class Player extends CoreModel{
         $topAssists = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
 
         return $topAssists;
+    }
+
+    /**
+     * Retrieve the list of 5 best player by rebounds
+     *
+     * @return  object
+     */  
+    public function findTopRebounds()
+    {
+        // SQL query
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+        
+        $sql = "SELECT * FROM player 
+            ORDER BY `rebounds_avg` DESC
+            LIMIT 5";
+        
+        // execute the query and set the result as a PDOStatement object
+        $pdoStatement = $pdo->query($sql);
+
+        // get result as a new instance and send it
+        $topRebounds = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+
+        return $topRebounds;
+    }
+
+    /**
+     * Retrieve the list of 5 best player by rebounds
+     *
+     * @return  object
+     */  
+    public function findTopBlocks()
+    {
+        // SQL query
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+        
+        $sql = "SELECT * FROM player 
+            ORDER BY `blocks_avg` DESC
+            LIMIT 5";
+        
+        // execute the query and set the result as a PDOStatement object
+        $pdoStatement = $pdo->query($sql);
+
+        // get result as a new instance and send it
+        $topBlocks = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+
+        return $topBlocks;
     }
 }
