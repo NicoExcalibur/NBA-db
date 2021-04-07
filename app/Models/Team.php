@@ -129,6 +129,28 @@ class Team extends CoreModel{
     }
 
     /**
+     * Retrieve all teams 
+     *
+     * @return  array
+     */
+    public function findAll()
+    {
+        // connects to DB
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+
+        // SQL query
+        $sql = "SELECT * FROM `team` 
+            ORDER BY `name`";
+        // execute the query and set the result as a PDOStatement object
+        $pdoStatement = $pdo->query($sql);
+
+        // get results in an array and send them
+        $allTeams = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
+
+        return $allTeams;
+    }
+
+    /**
      * Retrieve all teams from the Estern conference
      *
      * @return  array
@@ -244,28 +266,5 @@ class Team extends CoreModel{
         $easternRank = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
 
         return $easternRank; 
-    }
-
-    /**
-     * Retrieve logos and teams names 
-     *
-     * @return  array
-     */
-    public function getLogoById() {
-
-        // connects to DB
-        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
-
-        // SQL query
-        $sql = "SELECT `logo` FROM `team` 
-            INNER JOIN `player` 
-            ON `team`.`id` = `player`.`team_id`";
-        // execute the query and set the result as a PDOStatement object
-        $pdoStatement = $pdo->query($sql);
- 
-        // get results in an array and send them
-        $logoById = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Team');
- 
-        return $logoById; 
     }
 }

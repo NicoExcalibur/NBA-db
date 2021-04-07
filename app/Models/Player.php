@@ -161,8 +161,17 @@ class Player extends CoreModel{
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
 
         // SQL query
-        $sql = "SELECT * FROM `player` 
-            ORDER BY `name`";
+        $sql = "SELECT player.name AS `name`,
+                    player.id AS id,
+                    player.photo AS photo,
+                    team.logo AS logo,
+                    team.name AS team_name
+
+            FROM `player` 
+            INNER JOIN `team`
+            ON `team`.`id` = `player`.`team_id`
+            ORDER BY `player`.`name` ASC 
+            ";
         // execute the query and set the result as a PDOStatement object
         $pdoStatement = $pdo->query($sql);
 
@@ -372,7 +381,15 @@ class Player extends CoreModel{
         // SQL query
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
         
-        $sql = "SELECT * FROM player 
+        $sql = "SELECT player.name AS `name`,
+                player.id AS id,
+                player.photo AS photo,
+                team.logo AS logo,
+                team.name AS team_name
+
+            FROM `player` 
+            INNER JOIN `team`
+            ON `team`.`id` = `player`.`team_id` 
             ORDER BY `points_avg` DESC
             LIMIT 5";
         
@@ -395,7 +412,15 @@ class Player extends CoreModel{
         // SQL query
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
         
-        $sql = "SELECT * FROM player 
+        $sql = "SELECT player.name AS `name`,
+                player.id AS id,
+                player.photo AS photo,
+                team.logo AS logo,
+                team.name AS team_name
+
+            FROM `player` 
+            INNER JOIN `team`
+            ON `team`.`id` = `player`.`team_id` 
             ORDER BY `assists_avg` DESC
             LIMIT 5";
         
@@ -418,7 +443,15 @@ class Player extends CoreModel{
         // SQL query
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
         
-        $sql = "SELECT * FROM player 
+        $sql = "SELECT player.name AS `name`,
+                player.id AS id,
+                player.photo AS photo,
+                team.logo AS logo,
+                team.name AS team_name
+
+            FROM `player` 
+            INNER JOIN `team`
+            ON `team`.`id` = `player`.`team_id` 
             ORDER BY `rebounds_avg` DESC
             LIMIT 5";
         
@@ -441,7 +474,15 @@ class Player extends CoreModel{
         // SQL query
         $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
         
-        $sql = "SELECT * FROM player 
+        $sql = "SELECT player.name AS `name`,
+                player.id AS id,
+                player.photo AS photo,
+                team.logo AS logo,
+                team.name AS team_name
+
+            FROM `player` 
+            INNER JOIN `team`
+            ON `team`.`id` = `player`.`team_id` 
             ORDER BY `blocks_avg` DESC
             LIMIT 5";
         

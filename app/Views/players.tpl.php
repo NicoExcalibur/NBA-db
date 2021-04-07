@@ -20,7 +20,7 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $viewData['logoList'][$player->getId()]->getLogo(); ?>"></td>  
+                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -44,7 +44,7 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $viewData['logoList'][$player->getId()]->getLogo(); ?>"></td>
+                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -68,8 +68,7 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $viewData['logoList'][$player->getId()]->getLogo(); ?>"></td>
-
+                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -93,7 +92,7 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $viewData['logoList'][$player->getId()]->getLogo(); ?>"></td>
+                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -118,7 +117,8 @@
             <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
             <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
              <!-- I get the logo of the team from team_id in the player table -->
-             <td><img src="<?= $viewData['logoList'][$player->getId()]->getLogo(); ?>"></td>
+             <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
+            
         </tr>
         <?php endforeach; ?>
     </tbody>
