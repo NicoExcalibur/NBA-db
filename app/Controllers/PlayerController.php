@@ -3,7 +3,7 @@
 class PlayerController extends CoreController {
 
     /**
-     * Get a list of all players and send them to the view
+     * Get all lists of top players and send them to the view
      * 
      * @return void
      */
@@ -12,6 +12,12 @@ class PlayerController extends CoreController {
         // retrieve all players
         $playerModel = new Player();
         $playerList = $playerModel->findAllPlayers();
+
+        $topScorersModel = new Player();
+        $topScorersList = $topScorersModel->findTopScorers();
+
+        $topAssistsModel = new Player();
+        $topAssistsList = $topAssistsModel->findTopScorers();
         
         // TODO WIP
         // $teamModel = new Team();
@@ -19,7 +25,9 @@ class PlayerController extends CoreController {
 
         // send the players datas to the view
         $this->show('players', [
-            'playerList' => $playerList
+            'playerList' => $playerList,
+            'topScorersList' => $topScorersList,
+            'topAssistsList' => $topAssistsList
             // 'teamList' => $teamList 
         ]);
     }

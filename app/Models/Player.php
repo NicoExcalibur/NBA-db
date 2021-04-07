@@ -361,4 +361,50 @@ class Player extends CoreModel{
 
         return $playersByTeamId;
     }
+
+    /**
+     * Retrieve the list of 5 best player by score
+     *
+     * @return  object
+     */  
+    public function findTopScorers()
+    {
+        // SQL query
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+        
+        $sql = "SELECT * FROM player 
+            ORDER BY `points_avg` DESC
+            LIMIT 5";
+        
+        // execute the query and set the result as a PDOStatement object
+        $pdoStatement = $pdo->query($sql);
+
+        // get result as a new instance and send it
+        $topScorers = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+
+        return $topScorers;
+    }
+
+     /**
+     * Retrieve the list of 5 best player by score
+     *
+     * @return  object
+     */  
+    public function findTopAssists()
+    {
+        // SQL query
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+        
+        $sql = "SELECT * FROM player 
+            ORDER BY `assists_avg` DESC
+            LIMIT 5";
+        
+        // execute the query and set the result as a PDOStatement object
+        $pdoStatement = $pdo->query($sql);
+
+        // get result as a new instance and send it
+        $topAssists = $pdoStatement->fetchAll(PDO::FETCH_CLASS, 'Player');
+
+        return $topAssists;
+    }
 }
