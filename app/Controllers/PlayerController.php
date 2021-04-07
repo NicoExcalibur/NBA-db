@@ -26,8 +26,8 @@ class PlayerController extends CoreController {
          $topBlocksList = $topBlocksModel->findTopBlocks();
         
         // TODO WIP
-        // $teamModel = new Team();
-        // $teamList = $teamModel->getTeamById();
+        $teamModel = new Team();
+        $logoList = $teamModel->getLogoById();
 
         // send the players datas to the view
         $this->show('players', [
@@ -35,8 +35,8 @@ class PlayerController extends CoreController {
             'topScorersList' => $topScorersList,
             'topAssistsList' => $topAssistsList,
             'topReboundsList' => $topReboundsList,
-            'topBlocksList' => $topBlocksList
-            // 'teamList' => $teamList 
+            'topBlocksList' => $topBlocksList,
+            'logoList' => $logoList 
         ]);
     }
     

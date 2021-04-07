@@ -432,7 +432,7 @@ class Player extends CoreModel{
     }
 
     /**
-     * Retrieve the list of 5 best player by rebounds
+     * Retrieve the list of 5 best player by blocks
      *
      * @return  object
      */  

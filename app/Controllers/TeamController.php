@@ -43,6 +43,5 @@ class TeamController extends CoreController {
             'myEastRank' => $myEastRank,
             'myWestRank' => $myWestRank
         ]);
-
     }
 }
