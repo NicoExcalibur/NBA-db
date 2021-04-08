@@ -1,4 +1,4 @@
-<?php dump($viewData); ?>
+<?php// dump($viewData); ?>
 <div class="team-header">
     <div>
         <img src="<?= $viewData['myTeam']->getLogo(); ?>" alt="">
@@ -13,8 +13,11 @@
             }; ?>
         </p>
         <div>
-            <?= $viewData['myTeam']->getVictories(); ?>V - <?= $viewData['myTeam']->getDefeats(); ?>D
+            <?= $viewData['myTeam']->getVictories(); ?> V - <?= $viewData['myTeam']->getDefeats(); ?> D
         </div>
+    </div>
+    <div>
+            
     </div>
 </div>
 
