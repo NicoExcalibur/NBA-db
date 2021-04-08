@@ -20,7 +20,12 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
+                <td class="tooltip">
+                    <a href="<?= $router->generate('single-team', ['id' => $player->getTeamId()]); ?>">
+                        <img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>">
+                    </a>
+                    <span class="tooltiptext"><?= $player->team_name; ?></span>
+                </td> 
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -44,7 +49,12 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
+                <td class="tooltip">
+                    <a href="<?= $router->generate('single-team', ['id' => $player->getTeamId()]); ?>">
+                        <img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>">
+                    </a>
+                    <span class="tooltiptext"><?= $player->team_name; ?></span>
+                </td> 
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -68,7 +78,12 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
+                <td class="tooltip">
+                    <a href="<?= $router->generate('single-team', ['id' => $player->getTeamId()]); ?>">
+                        <img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>">
+                    </a>
+                    <span class="tooltiptext"><?= $player->team_name; ?></span>
+                </td> 
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -92,7 +107,12 @@
                 <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
                 <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
                 <!-- I get the logo of the team from team_id in the player table -->
-                <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
+                <td class="tooltip">
+                    <a href="<?= $router->generate('single-team', ['id' => $player->getTeamId()]); ?>">
+                        <img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>">
+                    </a>
+                <span class="tooltiptext"><?= $player->team_name; ?></span>
+            </td> 
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -117,8 +137,12 @@
             <td><img src="<?= $player->getPhoto(); ?>" alt="Portrait de <?= $player->getName(); ?>"></td>
             <td><a href="<?= $router->generate('single-player', ['id' => $player->getId()]); ?>"><?= $player->getName(); ?></a></td>
              <!-- I get the logo of the team from team_id in the player table -->
-             <td><img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>"></td>
-            
+             <td class="tooltip">
+                <a href="<?= $router->generate('single-team', ['id' => $player->getTeamId()]); ?>">
+                    <img src="<?= $player->logo; ?>" alt="Logo de <?= $player->team_name; ?>">
+                </a>
+                <span class="tooltiptext"><?= $player->team_name; ?></span>
+            </td>    
         </tr>
         <?php endforeach; ?>
     </tbody>

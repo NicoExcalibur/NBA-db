@@ -11,6 +11,10 @@ class TeamController extends CoreController {
         $emptyTeam = new Team();
         $myTeam = $emptyTeam->find($id['id']);
 
+        //retrieve a team with his id in the url
+        $emptyTeam = new Team();
+        $myRank = $emptyTeam->findTeamRank($id['id']);
+
         //retrieve all players that have the team id in the url
         $playerModel = new Player();
         $playerList = $playerModel->findPlayersByTeamId($id['id']);
@@ -25,7 +29,8 @@ class TeamController extends CoreController {
         // send datas to the view
         $this->show('single-team', [
             'myTeam' => $myTeam,
-            'playerList' => $playerList
+            'playerList' => $playerList,
+            'myRank' => $myRank
         ]);
     }
 

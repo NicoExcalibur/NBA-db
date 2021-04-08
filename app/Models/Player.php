@@ -165,7 +165,8 @@ class Player extends CoreModel{
                     player.id AS id,
                     player.photo AS photo,
                     team.logo AS logo,
-                    team.name AS team_name
+                    team.name AS team_name,
+                    player.team_id AS team_id
 
             FROM `player` 
             INNER JOIN `team`
@@ -385,7 +386,8 @@ class Player extends CoreModel{
                 player.id AS id,
                 player.photo AS photo,
                 team.logo AS logo,
-                team.name AS team_name
+                team.name AS team_name,
+                player.team_id AS team_id
 
             FROM `player` 
             INNER JOIN `team`
@@ -416,7 +418,8 @@ class Player extends CoreModel{
                 player.id AS id,
                 player.photo AS photo,
                 team.logo AS logo,
-                team.name AS team_name
+                team.name AS team_name,
+                player.team_id AS team_id
 
             FROM `player` 
             INNER JOIN `team`
@@ -447,7 +450,8 @@ class Player extends CoreModel{
                 player.id AS id,
                 player.photo AS photo,
                 team.logo AS logo,
-                team.name AS team_name
+                team.name AS team_name,
+                player.team_id AS team_id
 
             FROM `player` 
             INNER JOIN `team`
@@ -478,7 +482,8 @@ class Player extends CoreModel{
                 player.id AS id,
                 player.photo AS photo,
                 team.logo AS logo,
-                team.name AS team_name
+                team.name AS team_name,
+                player.team_id AS team_id
 
             FROM `player` 
             INNER JOIN `team`

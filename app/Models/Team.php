@@ -267,4 +267,30 @@ class Team extends CoreModel{
 
         return $easternRank; 
     }
+
+    /**
+     * Retrieve a team that get the current id
+     *
+     * @return  object
+     */
+    public function findTeamRank($id)
+    {
+        // connects to DB
+        $pdo = new PDO('mysql:host=localhost;dbname=nba', 'Nico', 'Ereul9Aeng');
+        
+        // SQL query
+        $sql = "SELECT `conf_rank` FROM `team`
+            INNER JOIN `ranking` 
+            ON `team`.`id` = `ranking`.`team_id` 
+            WHERE `team`.`id` = {$id};";
+        
+        // execute the query and set the result as a PDOStatement object
+        $pdoStatement = $pdo->query($sql);
+
+        // get result as a new instance and send it
+        $oneTeam = $pdoStatement->fetchObject('Team');
+
+        return $oneTeam;
+    }
+
 }
